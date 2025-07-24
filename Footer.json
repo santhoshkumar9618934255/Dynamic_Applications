@@ -1,0 +1,63 @@
+{
+    "footer1": {
+        "name1": "Subscribe",
+        "name2": "To get special offers and VIP treatment:",
+        "email_input": "<input type='email' placeholder='Enter your email'>",
+        "sub_bt": "Subscribe"
+    },
+    "footer2": {
+        "contact": {
+            "name": "Contact",
+            "query": "Questions? Go ahead.",
+            "input_box": [
+                "<input type='text' placeholder='Enter your Name'>",
+                "<input type='email' placeholder='Enter your email'>",
+                "<input type='text' placeholder='Subject'>",
+                "<input type='text' placeholder='Message'>"
+            ],
+            "send_bt": "Send"
+        },
+        "about": {
+            "name": "About",
+            "menu": [
+                "About us",
+                "We're hiring",
+                "Support",
+                "Find store",
+                "Shipment",
+                "Payment",
+                "Gift card",
+                "Return",
+                "Help"
+            ]
+        },
+        "thrift": {
+            "name_head1": "The Thrift-Flip-Store",
+            "menu1": [
+                {
+                    "name": "India, Assam",
+                    "img": "https://tse1.mm.bing.net/th/id/OIP.J_Ju4ZbjF9fH3B595joNeQHaHa?r=0&pid=ImgDet&w=178&h=178&c=7&dpr=1.5&o=7&rm=3"
+                },
+                {
+                    "name": "8011307741",
+                    "img": "https://www.bing.com/th/id/OIP.c4eyvcsAqq_jw4zmVwzPCAHaHa?w=150&h=150&c=8&rs=1&qlt=70&o=7&cb=thws4&dpr=1.5&pid=3.1&rm=3"
+                },
+                {
+                    "name": "sudeepacahrjeegp@gmail.com",
+                    "img": "https://th.bing.com/th/id/OIP.7FK0BPTj_IgwV_nZ-QEKLwHaHa?w=178&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+                }
+            ],
+            "name_head2": "We accept",
+            "menu2": [
+                {
+                    "name": "G-pay",
+                    "img": "https://static.vecteezy.com/system/resources/previews/021/496/254/large_2x/google-pay-logo-symbol-white-design-illustration-with-black-background-free-vector.jpg"
+                },
+                {
+                    "name": "Credit Card",
+                    "img": "https://th.bing.com/th/id/OIP.d97keqJshJ4AgzXp0sFEqgHaHu?w=160&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+                }
+            ]
+        }
+    }
+}

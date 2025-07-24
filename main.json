@@ -1,0 +1,29 @@
+{
+    "main1":{
+     
+        "name1":"New arrivals",
+        "name2":"COLLECTION 2025",
+        "name3":"SHOP NOW",
+        "boy":"https://th.bing.com/th/id/OIP.vUCimnkmGn2KMywrYFTAnwHaLH?w=202&h=303&c=7&r=0&o=5&dpr=1.5&pid=1.7"
+
+    },
+
+    "main2":{
+
+        "items":"8 items",
+        "container1":[
+           {"model":"Ripped Skinny Jeans","price": "Rs. 2400","img":"https://thrift-flip-store.netlify.app/e-com-page/2.jpg"},
+           {"model":"Mega Ripped Jeans","price": "Rs. 1999","img":"https://thrift-flip-store.netlify.app/e-com-page/4.jpg"},
+           {"model":"Washed Skinny Jeans","price": "Rs. 2000","img":"https://thrift-flip-store.netlify.app/e-com-page/6.jpg"},
+           {"model":"Vintage Skinny Jeans","price": "Rs. 1500","img":"https://thrift-flip-store.netlify.app/e-com-page/8.jpg"}
+        ],
+
+
+        "container2":[
+            {"model":"Mega Ripped Jeans","price": "Rs. 1900","img":"https://thrift-flip-store.netlify.app/e-com-page/3.jpg"},
+           {"model":"Washed Skinny Jeans","price": "Rs. 2500","img":"https://thrift-flip-store.netlify.app/e-com-page/5.jpg"},
+           {"model":"Vintage Skinny Jeans","price": "Rs. 1499","img":"https://thrift-flip-store.netlify.app/e-com-page/7.jpg"},
+           {"model":"Ripped Skinny Jeans","price": "Rs. 2499","img":"https://thrift-flip-store.netlify.app/e-com-page/9.jpg"}
+        ]
+    }
+}

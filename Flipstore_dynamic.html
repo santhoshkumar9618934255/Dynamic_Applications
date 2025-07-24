@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="Flipstore_dynamic.css">
+
+</head>
+
+<body>
+
+    <section id="body">
+
+        <section id="left_tools">
+            <p id="left_big_text"></p>
+        </section>
+
+
+        <section id="right_section">
+            <p id="jeans"></p>
+            <div id="icons_right">
+                <p id="icon1"></p>
+                <p id="icon2"></p>
+            </div>
+        </section>
+
+
+        <section id="main_header">
+            <button id="button"></button>
+        </section>
+
+
+        <section id="main_container">
+            <p id="items"></p>
+            <p id="container1"></p>
+            <p id="container2"></p>
+        </section>
+
+        <section id="footer_section">
+            <div id="sub_section"></div>
+
+            <section id="contact_section">
+                <div id="contact_div"></div>
+                <div id="about_div"></div>
+                <div id="thrift_div"></div>
+            </section>
+
+            <div id="last_div"></div>
+
+        </section>
+
+
+    </section>
+
+    <script>
+
+        // <!--------------------------------------------------------Left tools_section--------------------------------->
+
+        $.ajax({
+            url: "https://example12332.s3.eu-north-1.amazonaws.com/left_tools.json",
+            method: "GET",
+            success: (posRes) => {
+                let { left_section } = posRes;
+                let { name, menu } = left_section;
+
+                let left_big_text = document.getElementById('left_big_text');
+                left_big_text.innerHTML = name;
+
+                let tools_section = document.createElement('section');
+                let left_child = document.createElement('div');
+                left_child.id = 'child';
+
+
+                menu.forEach((ele) => {
+                    let left_text = document.createElement('div');
+                    left_text.className = 'left_small_text';
+
+                    if (typeof ele === 'object') {
+                       
+                        let key = Object.keys(ele)[0];
+                        let values = ele[key];
+                        left_text.innerHTML = key;
+                        left_text.id = "jeans_arr";
+
+                      
+                        let subMenu = document.createElement("div");
+                        subMenu.style.display = "none";
+                        subMenu.style.marginLeft = "20px";
+
+                        values.forEach(sub => {
+                            let subItem = document.createElement("div");
+                            subItem.className = "left_small_text";
+                            subItem.innerHTML = sub;
+                            subMenu.appendChild(subItem);
+                        });
+
+                      
+                        left_text.addEventListener("click", () => {
+                            subMenu.style.display = subMenu.style.display === "none" ? "block" : "none";
+                        });
+
+                        tools_section.appendChild(left_text);
+                        tools_section.appendChild(subMenu);
+
+                    } else {
+                       
+                        left_text.innerHTML = ele;
+
+                        if (ele === "Contact") {
+                            left_text.id = "contacts";
+                            left_text.addEventListener("click", () => {
+                                document.getElementById("contact_section").scrollIntoView({ behavior: "smooth" });
+                            });
+                        } else if (ele === "Blazers") {
+                            left_text.id = "blazers";
+                            left_text.addEventListener("click", () => {
+                                document.getElementById("main_header").scrollIntoView({ behavior: "smooth" });
+                            });
+                        } else if (ele === "Shirts" || ele === "Dresses" || ele === "Gymwear" || ele === "Shoes" ||
+                            ele === "Newsletter" || ele === "Subscribe") {
+                            left_text.id = "all_sm_text";
+                        }
+
+                        tools_section.appendChild(left_text);
+                    }
+                });
+
+
+
+                left_child.appendChild(tools_section);
+                left_tools.appendChild(left_child);
+
+
+
+            },
+            error: (errRes) => {
+                console.log("Failed to load data", errRes);
+            }
+        })
+
+        // <!-------------------------------------------------------Right_Section----------------------------------------->
+
+
+        //<!-----Header_Container------------------>
+
+        $.ajax({
+            url: "https://example12332.s3.eu-north-1.amazonaws.com/header.json",
+            method: "GET",
+            success: (posRes) => {
+                let { header } = posRes;
+                let { name, "shopping-img": shoppingimg, "search-img": searchimg } = header;
+
+                document.getElementById('jeans').innerHTML = name;
+                document.getElementById("icon1").innerHTML = shoppingimg;
+                document.getElementById("icon2").innerHTML = searchimg;
+            },
+            error: (errRes) => {
+                console.log("Failed to load header", errRes);
+            }
+        });
+
+
+        //<!---------------------Main_Container------------>
+
+        $.ajax({
+            url: "https://example12332.s3.eu-north-1.amazonaws.com/main.json",
+            method: "Get",
+            success: (posRes) => {
+                console.log(posRes);
+
+                let { main1 } = posRes;
+                let { name1, name2, name3, boy } = main1;
+
+                //Boy image
+
+                let img = document.createElement('img');
+                img.setAttribute('src', boy);
+                img.setAttribute("width", "100%");
+
+                let main_section = document.getElementById('main_header');
+                main_section.appendChild(img);
+
+
+                //Text on image
+
+                let text_section = document.createElement('section');
+                text_section.id = "on_img_text";
+
+                let big_text = document.createElement('div');
+                big_text.id = "big_text";
+                big_text.innerHTML = name1;
+                text_section.appendChild(big_text);
+
+
+                let sm_text = document.createElement('div');
+                sm_text.id = "sm_text";
+                sm_text.innerHTML = name2;
+                text_section.appendChild(sm_text);
+
+
+                let button_text = document.getElementById('button');
+                button_text.innerHTML = name3;
+                text_section.appendChild(button_text);
+
+                button_text.addEventListener("click", () => {
+                    document.getElementById("container1").scrollIntoView({ behavior: "smooth" });
+                });
+
+                main_section.appendChild(text_section);
+
+
+                //Models-1
+
+                let { main2 } = posRes;
+                let { items, container1, container2 } = main2;
+
+                let items_text = document.getElementById('items').innerHTML = items;
+
+                document.getElementById('items').innerHTML = items;
+
+
+                let main_container1 = document.getElementById('container1');
+
+                container1.forEach((ele, index) => {
+
+                    let img_section = document.createElement('section');
+
+                    let img = document.createElement('img');
+                    img.setAttribute('src', ele.img);
+
+                    let h3 = document.createElement('h3');
+                    h3.innerHTML = ele.model;
+
+                    let cost = document.createElement('p');
+                    cost.innerHTML = ele.price;
+
+                    img_section.appendChild(img);
+                    img_section.appendChild(h3);
+                    img_section.appendChild(cost);
+
+                    main_container1.appendChild(img_section);
+                })
+
+
+                let main_container2 = document.getElementById('container2');
+
+                container2.forEach((ele, index) => {
+
+                    let img_section = document.createElement('section');
+
+                    let img = document.createElement('img');
+                    img.setAttribute('src', ele.img);
+
+                    let h3 = document.createElement('h3');
+                    h3.innerHTML = ele.model;
+
+                    let cost = document.createElement('p');
+                    cost.innerHTML = ele.price;
+
+                    img_section.appendChild(img);
+                    img_section.appendChild(h3);
+                    img_section.appendChild(cost);
+
+
+                    main_container2.appendChild(img_section);
+                }
+                )
+            },
+
+            error: (errRes) => {
+                console.log(errRes);
+            }
+
+        })
+
+
+        //<!-------------------Footer_Section-------------------------------------------------->
+
+
+        $.ajax({
+            url: "https://example12332.s3.eu-north-1.amazonaws.com/Footer.json",
+            method: "GET",
+            success: (posRes) => {
+                console.log(posRes);
+                let { footer1 } = posRes;
+                let { name1, name2, email_input, sub_bt } = footer1;
+
+                let sub_text = document.createElement('p');
+                sub_text.id = "subscribe_header";
+                sub_text.innerHTML = name1;
+                let sub_section = document.getElementById("sub_section");
+                sub_section.appendChild(sub_text);
+
+                let after_sub = document.createElement('p');
+                after_sub.id = "after_sub";
+                after_sub.innerHTML = name2;
+                sub_section.appendChild(after_sub);
+
+                let sub_email = document.createElement('p');
+                sub_email.id = "sub_email";
+                sub_email.innerHTML = email_input;
+                sub_section.appendChild(sub_email);
+
+                let sub_button = document.createElement('button');
+                sub_button.id = "sub_button";
+                sub_button.innerHTML = sub_bt;
+                sub_section.appendChild(sub_button);
+
+
+
+
+                let { footer2 } = posRes;
+                let { contact } = footer2;
+                let { name, query, input_box, send_bt } = contact;
+
+                let contact_div = document.getElementById('contact_div');
+
+                let contact_text = document.createElement("p");
+                contact_text.id = "contact_text";
+                contact_text.innerHTML = name;
+                contact_div.appendChild(contact_text);
+
+                let query_text = document.createElement("p");
+                query_text.id = "query_text";
+                query_text.innerHTML = query;
+                contact_div.appendChild(query_text);
+
+                input_box.forEach((ele, index) => {
+                    var cont_input_section = document.createElement('p');
+                    cont_input_section.id = "cont_input_section";
+                    cont_input_section.innerHTML = ele;
+                    contact_div.appendChild(cont_input_section);
+                });
+
+                let send_button = document.createElement("button");
+                send_button.id = "send_button";
+                send_button.innerHTML = send_bt;
+                contact_div.appendChild(send_button);
+
+
+
+                let { about } = footer2;
+                let { "name": alt_name, menu } = about;
+
+                let about_div = document.getElementById("about_div");
+
+                let about_text = document.createElement('p');
+                about_text.id = "about_text";
+                about_text.innerHTML = alt_name;
+                about_div.appendChild(about_text);
+
+                menu.forEach((ele, index) => {
+                    let about_sm_text = document.createElement('p');
+                    about_sm_text.id = "about_sm_text";
+                    about_sm_text.innerHTML = ele;
+                    about_div.appendChild(about_sm_text);
+                })
+
+
+                let { thrift } = footer2;
+                let { name_head1, menu1 } = thrift;
+
+                let thrift_div = document.getElementById("thrift_div");
+
+
+                let thrift_header = document.createElement('p');
+                thrift_header.id = "thrift_header";
+                thrift_header.innerHTML = name_head1;
+                thrift_div.appendChild(thrift_header);
+
+                menu1.forEach((ele, index) => {
+                    let icon_section = document.createElement("div");
+                    icon_section.id = "icon_section";
+
+                    let icon_img = document.createElement('img');
+                    icon_img.setAttribute("src", ele.img);
+                    icon_img.innerHTML = ele.img;
+                    console.log(ele.img);
+                    icon_img.setAttribute("width", "18px");
+                    icon_section.appendChild(icon_img);
+
+                    let icon_text = document.createElement("p");
+                    icon_text.innerHTML = ele.name;
+                    icon_section.appendChild(icon_text);
+                    thrift_div.appendChild(icon_section);
+                })
+
+
+
+
+                let { name_head2, menu2 } = thrift;
+
+                let we_accept_div = document.createElement("div");
+                we_accept_div.id = "we_accept_div";
+
+                let we_accept = document.createElement("p");
+                we_accept.id = "we_accept";
+                we_accept.innerHTML = name_head2;
+                we_accept_div.appendChild(we_accept);
+                thrift_div.appendChild(we_accept_div);
+
+                menu2.forEach((ele, index) => {
+                    let g_pay_icons = document.createElement("div");
+                    g_pay_icons.id = "g_pay_icons";
+
+                    let icon2_img = document.createElement("img");
+                    icon2_img.id = "icon2_img";
+                    icon2_img.setAttribute("src", ele.img);
+                    icon2_img.setAttribute("width", "18px");
+                    g_pay_icons.appendChild(icon2_img);
+
+                    let g_pay_text = document.createElement("p");
+                    g_pay_text.id = "g_pay_text";
+                    g_pay_text.innerHTML = ele.name;
+                    g_pay_icons.appendChild(g_pay_text);
+
+                    thrift_div.appendChild(g_pay_icons);
+                })
+
+
+            },
+            error: (errRes) => {
+                console.log(errRes);
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

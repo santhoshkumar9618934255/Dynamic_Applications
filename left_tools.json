@@ -1,0 +1,18 @@
+{
+  "left_section": {
+    "name": "The Thrift-Flip_Store",
+    "menu": [
+      "Shirts",
+      "Dresses",
+      {
+        "Jeans": ["Skinny", "Relaxed", "Bootcut", "Straight"]
+      },
+      "Gymwear",
+      "Blazers",
+      "Shoes",
+      "Contact",
+      "Newsletter",
+      "Subscribe"
+    ]
+  }
+}
